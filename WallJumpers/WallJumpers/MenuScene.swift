@@ -8,9 +8,16 @@
 
 import Foundation
 import SpriteKit
+import GameKit
 
 
 class MenuScene: SKScene {
+    //GameCenter
+    var score: Int = 0
+    var gamecenterEnabled = Bool()
+    var gamecenterDefaultLeaderBoard = String()
+    let LEADERBOARD_ID = "grp.score.walljumper"
+    
     
     var playGameLabel = SKLabelNode()
     var leaderBoardLabel = SKLabelNode()
@@ -112,5 +119,43 @@ class MenuScene: SKScene {
     }
     
     
+    //MARK: GAME CENTER
+    func authenticateLocalPlayer(){
+        let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
+        localPlayer.authenticateHandler = {(ViewController, error)-> Void in
+            if((ViewController) != nil){
+                
+            }else if(localPlayer.isAuthenticated){
+                self.gamecenterEnabled = true
+                
+                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboadIdentifer, error) in
+                    if error != nil {
+                        
+                    }else{
+                        self.gamecenterDefaultLeaderBoard = leaderboadIdentifer!
+                    }
+                })
+            }else {
+                self.gamecenterEnabled = false
+                
+            }
+        }
+    }
+    
+    
+    
+//    func checkLeaderboards(){
+//        let gcViewController = GKGameCenterViewController()
+//        gcViewController.gameCenterDelegate = self
+//        gcViewController.viewState = .leaderboards
+//        gcViewController.leaderboardIdentifier = LEADERBOARD_ID
+//        view.presentScene(gcViewController, animated: true, completion: nil)
+//    }
+    
     
 }
+    
+    
+    
+    
+

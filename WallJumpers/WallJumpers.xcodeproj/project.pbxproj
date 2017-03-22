@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0225AF8E1E710469000430A0 /* black-samurai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0225AF8D1E710469000430A0 /* black-samurai.mp3 */; };
 		0225AF901E710492000430A0 /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0225AF8F1E710492000430A0 /* SKTAudio.swift */; };
+		023F66F31E80B9DC00CE90FA /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023F66F21E80B9DC00CE90FA /* GameKit.framework */; };
 		026F8D411E79FBF9006FAC14 /* WallParallaxScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F8D401E79FBF9006FAC14 /* WallParallaxScrolling.swift */; };
 		029FFAD11E777EDE00934969 /* Gold_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 029FFAC71E777EDE00934969 /* Gold_1.png */; };
 		029FFAD21E777EDE00934969 /* Gold_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 029FFAC81E777EDE00934969 /* Gold_2.png */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		0225AF8D1E710469000430A0 /* black-samurai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "black-samurai.mp3"; sourceTree = "<group>"; };
 		0225AF8F1E710492000430A0 /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
+		023F66F21E80B9DC00CE90FA /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		026F8D401E79FBF9006FAC14 /* WallParallaxScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallParallaxScrolling.swift; sourceTree = "<group>"; };
 		029FFAC71E777EDE00934969 /* Gold_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gold_1.png; sourceTree = "<group>"; };
 		029FFAC81E777EDE00934969 /* Gold_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gold_2.png; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			files = (
 				02A78EE81E6929C400C5A7F3 /* SpriteKit.framework in Frameworks */,
 				02A78EDE1E69298F00C5A7F3 /* iAd.framework in Frameworks */,
+				023F66F31E80B9DC00CE90FA /* GameKit.framework in Frameworks */,
 				02A78EE41E6929C400C5A7F3 /* GameplayKit.framework in Frameworks */,
 				02A78EE51E6929C400C5A7F3 /* Metal.framework in Frameworks */,
 				02A78EE61E6929C400C5A7F3 /* MetalKit.framework in Frameworks */,
@@ -185,6 +188,7 @@
 		02A78EDC1E69298F00C5A7F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				023F66F21E80B9DC00CE90FA /* GameKit.framework */,
 				02A78EDF1E6929C400C5A7F3 /* GameplayKit.framework */,
 				02A78EE01E6929C400C5A7F3 /* Metal.framework */,
 				02A78EE11E6929C400C5A7F3 /* MetalKit.framework */,
@@ -229,6 +233,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 6346F46FVY;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -418,6 +427,7 @@
 				INFOPLIST_FILE = WallJumpers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mykoo.WallJumpers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -432,6 +442,7 @@
 				INFOPLIST_FILE = WallJumpers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mykoo.WallJumpers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;

@@ -7,15 +7,27 @@
 //
 
 import UIKit
+import SpriteKit
+import GameKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var gamecenterEnabled = Bool()
+    var gamecenterDefaultLeaderBoard = String()
+    let LEADERBOARD_ID = "grp.score.walljumper"
+    
 
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        authenticateLocalPlayer()
+        
+        
         return true
     }
 
@@ -39,6 +51,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    
+    func authenticateLocalPlayer(){
+        let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
+        localPlayer.authenticateHandler = {(ViewController, error)-> Void in
+            if((ViewController) != nil){
+                
+            }else if(localPlayer.isAuthenticated){
+                self.gamecenterEnabled = true
+
+                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboadIdentifer, error) in
+                    if error != nil {
+                        
+                    }else{
+                        self.gamecenterDefaultLeaderBoard = leaderboadIdentifer!
+                    }
+                })
+            }else {
+                self.gamecenterEnabled = false
+                
+            }
+        }
     }
 
 
