@@ -10,7 +10,6 @@
 		0225AF8E1E710469000430A0 /* black-samurai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0225AF8D1E710469000430A0 /* black-samurai.mp3 */; };
 		0225AF901E710492000430A0 /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0225AF8F1E710492000430A0 /* SKTAudio.swift */; };
 		023F66F31E80B9DC00CE90FA /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023F66F21E80B9DC00CE90FA /* GameKit.framework */; };
-		026F8D411E79FBF9006FAC14 /* WallParallaxScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F8D401E79FBF9006FAC14 /* WallParallaxScrolling.swift */; };
 		029FFAD11E777EDE00934969 /* Gold_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 029FFAC71E777EDE00934969 /* Gold_1.png */; };
 		029FFAD21E777EDE00934969 /* Gold_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 029FFAC81E777EDE00934969 /* Gold_2.png */; };
 		029FFAD31E777EDE00934969 /* Gold_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 029FFAC91E777EDE00934969 /* Gold_3.png */; };
@@ -41,13 +40,13 @@
 		02AA21A01E6CD24600D9F630 /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 02AA219F1E6CD24600D9F630 /* jump.wav */; };
 		02BD10211E78893C008B3DE2 /* CreditsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 02BD10201E78893C008B3DE2 /* CreditsScene.sks */; };
 		02BD10231E788952008B3DE2 /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD10221E788952008B3DE2 /* CreditsScene.swift */; };
+		16EE43812E4BDDDB073CF4EA /* Pods_WallJumpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543A5EDEF61A0B8C10124217 /* Pods_WallJumpers.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0225AF8D1E710469000430A0 /* black-samurai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "black-samurai.mp3"; sourceTree = "<group>"; };
 		0225AF8F1E710492000430A0 /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
 		023F66F21E80B9DC00CE90FA /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		026F8D401E79FBF9006FAC14 /* WallParallaxScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallParallaxScrolling.swift; sourceTree = "<group>"; };
 		029FFAC71E777EDE00934969 /* Gold_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gold_1.png; sourceTree = "<group>"; };
 		029FFAC81E777EDE00934969 /* Gold_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gold_2.png; sourceTree = "<group>"; };
 		029FFAC91E777EDE00934969 /* Gold_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gold_3.png; sourceTree = "<group>"; };
@@ -80,6 +79,9 @@
 		02AA219F1E6CD24600D9F630 /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		02BD10201E78893C008B3DE2 /* CreditsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CreditsScene.sks; sourceTree = "<group>"; };
 		02BD10221E788952008B3DE2 /* CreditsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
+		543A5EDEF61A0B8C10124217 /* Pods_WallJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WallJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		698E98CA894F77B1891F8FDE /* Pods-WallJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallJumpers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WallJumpers/Pods-WallJumpers.debug.xcconfig"; sourceTree = "<group>"; };
+		FC7D0F33EB470EF8EBEAD141 /* Pods-WallJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallJumpers.release.xcconfig"; path = "Pods/Target Support Files/Pods-WallJumpers/Pods-WallJumpers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				02A78EE51E6929C400C5A7F3 /* Metal.framework in Frameworks */,
 				02A78EE61E6929C400C5A7F3 /* MetalKit.framework in Frameworks */,
 				02A78EE71E6929C400C5A7F3 /* ReplayKit.framework in Frameworks */,
+				16EE43812E4BDDDB073CF4EA /* Pods_WallJumpers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +158,7 @@
 				02A78EC31E69296800C5A7F3 /* WallJumpers */,
 				02A78EC21E69296800C5A7F3 /* Products */,
 				02A78EDC1E69298F00C5A7F3 /* Frameworks */,
+				2040F29BA11139217DEFF822 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,7 +184,6 @@
 				02A78ECE1E69296800C5A7F3 /* Main.storyboard */,
 				02A78ED31E69296800C5A7F3 /* LaunchScreen.storyboard */,
 				02A78ED61E69296800C5A7F3 /* Info.plist */,
-				026F8D401E79FBF9006FAC14 /* WallParallaxScrolling.swift */,
 			);
 			path = WallJumpers;
 			sourceTree = "<group>";
@@ -195,8 +198,18 @@
 				02A78EE21E6929C400C5A7F3 /* ReplayKit.framework */,
 				02A78EE31E6929C400C5A7F3 /* SpriteKit.framework */,
 				02A78EDD1E69298F00C5A7F3 /* iAd.framework */,
+				543A5EDEF61A0B8C10124217 /* Pods_WallJumpers.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2040F29BA11139217DEFF822 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				698E98CA894F77B1891F8FDE /* Pods-WallJumpers.debug.xcconfig */,
+				FC7D0F33EB470EF8EBEAD141 /* Pods-WallJumpers.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,9 +219,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02A78ED91E69296800C5A7F3 /* Build configuration list for PBXNativeTarget "WallJumpers" */;
 			buildPhases = (
+				1DB52EE0041F93A3DCC8CD0A /* [CP] Check Pods Manifest.lock */,
 				02A78EBD1E69296800C5A7F3 /* Sources */,
 				02A78EBE1E69296800C5A7F3 /* Frameworks */,
 				02A78EBF1E69296800C5A7F3 /* Resources */,
+				C19B9805C49D2D8FA5A4AEF7 /* [CP] Embed Pods Frameworks */,
+				01F61438DEB3182383D73F33 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,6 +305,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01F61438DEB3182383D73F33 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WallJumpers/Pods-WallJumpers-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1DB52EE0041F93A3DCC8CD0A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C19B9805C49D2D8FA5A4AEF7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WallJumpers/Pods-WallJumpers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		02A78EBD1E69296800C5A7F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -296,7 +360,6 @@
 			files = (
 				02A78ECB1E69296800C5A7F3 /* GameScene.swift in Sources */,
 				0225AF901E710492000430A0 /* SKTAudio.swift in Sources */,
-				026F8D411E79FBF9006FAC14 /* WallParallaxScrolling.swift in Sources */,
 				029FFAE61E7793D600934969 /* MenuScene.swift in Sources */,
 				02A78ECD1E69296800C5A7F3 /* GameViewController.swift in Sources */,
 				02A78EC51E69296800C5A7F3 /* AppDelegate.swift in Sources */,
@@ -421,6 +484,7 @@
 		};
 		02A78EDA1E69296800C5A7F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 698E98CA894F77B1891F8FDE /* Pods-WallJumpers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6346F46FVY;
@@ -436,6 +500,7 @@
 		};
 		02A78EDB1E69296800C5A7F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC7D0F33EB470EF8EBEAD141 /* Pods-WallJumpers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6346F46FVY;

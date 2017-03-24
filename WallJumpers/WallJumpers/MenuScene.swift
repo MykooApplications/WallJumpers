@@ -6,12 +6,11 @@
 //  Copyright © 2017 Roshan Mykoo. All rights reserved.
 //
 
-import Foundation
 import SpriteKit
 import GameKit
 
 
-class MenuScene: SKScene {
+class MenuScene: SKScene, UIGestureRecognizerDelegate, GKGameCenterControllerDelegate{
     //GameCenter
     var score: Int = 0
     var gamecenterEnabled = Bool()
@@ -36,7 +35,7 @@ class MenuScene: SKScene {
                 startGame()
             }
             if leaderBoardLabel.contains(touch.location(in: self)){
-                
+                showLeaderboards()
             }
             if achivementsLabel.contains(touch.location(in: self)) {
                 
@@ -71,6 +70,24 @@ class MenuScene: SKScene {
         appName.fontName = "Helvetica-Bold"
         self.addChild(appName)
         
+    }
+    
+    func showLeaderboards(){
+        let gameCenterViewController: GKGameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.viewState = GKGameCenterViewControllerState.leaderboards
+        gameCenterViewController.gameCenterDelegate = self
+        gameCenterViewController.leaderboardIdentifier = "grp.score.walljumper"
+        let vc: UIViewController? = self.view?.window?.rootViewController
+        vc?.present(gameCenterViewController, animated: true, completion: nil)
+
+    }
+    func showAchivements(){
+        let gameCenterViewController: GKGameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.viewState = GKGameCenterViewControllerState.achievements
+        
+        gameCenterViewController.leaderboardIdentifier = "grp.score.walljumper"
+        let vc: UIViewController? = self.view?.window?.rootViewController
+        vc?.present(gameCenterViewController, animated: true, completion: nil)
     }
     
     func createMenu(){
@@ -152,6 +169,10 @@ class MenuScene: SKScene {
 //        view.presentScene(gcViewController, animated: true, completion: nil)
 //    }
     
+   
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController){
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
     
 }
     

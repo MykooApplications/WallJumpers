@@ -1,0 +1,21 @@
+PODS:
+  - EasyGameCenter (3.0.0)
+
+DEPENDENCIES:
+  - EasyGameCenter (from `https://github.com/DaRkD0G/Easy-Game-Center-Swift.git`)
+
+EXTERNAL SOURCES:
+  EasyGameCenter:
+    :git: https://github.com/DaRkD0G/Easy-Game-Center-Swift.git
+
+CHECKOUT OPTIONS:
+  EasyGameCenter:
+    :commit: 75cc46e837e4eb419ee9d050e107b2a720b62bf8
+    :git: https://github.com/DaRkD0G/Easy-Game-Center-Swift.git
+
+SPEC CHECKSUMS:
+  EasyGameCenter: 26cf8b5ca1916943c7dc92a82870e78eca024c29
+
+PODFILE CHECKSUM: d94450dbc0c91c3f37dc9ab2f93badc1b403100b
+
+COCOAPODS: 1.2.0

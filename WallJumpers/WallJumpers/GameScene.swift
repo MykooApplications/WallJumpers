@@ -39,6 +39,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gamecenterDefaultLeaderBoard = String()
     let LEADERBOARD_ID = "grp.score.walljumper"
     var score: Int = 0
+    var playerDeaths: Int = 0
+    var playerCoins: Int = 0
+    var playerSwipes: Int = 0
 
     
     //Game Bools
@@ -80,21 +83,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //SWIPEING METHODS TO BE RECONISED IN DID MOVE TO
     func swipedRight(sender:UISwipeGestureRecognizer){
-        print("swipe right")
+        //print("swipe right")
         player.texture = SKTexture(imageNamed: "runright")
         let rightAction = SKAction.moveTo(x: 364, duration: 0.3)
         player.run(rightAction)
+        playerSwipes += 1
     }
     func swipedLeft(sender:UISwipeGestureRecognizer){
-        print("swipe left")
+        //print("swipe left")
         player.texture = SKTexture(imageNamed: "runleft")
-
         let leftAction = SKAction.moveTo(x: 50, duration: 0.3)
         player.run(leftAction)
+        playerSwipes += 1
     }
     
     
     override func didMove(to view: SKView) {
+        playerDeaths = 0
         createGame()
         showInstructions()
         
@@ -124,24 +129,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.categoryBitMask == physicsCategories.playerCategory  &&
             secondBody.categoryBitMask == physicsCategories.leftWallCategory{
             player.texture = SKTexture(imageNamed: "leftWallJump")
-            print("the ball hit the left wall, run sound action")
+            //print("the ball hit the left wall, run sound action")
             run(jumpSoundAction)
             player.removeAllActions()
             leftWallTouch = true
             rightWallTouch = false
-            print("Left collide")
+            //print("Left collide")
             
         }
         
         if firstBody.categoryBitMask == physicsCategories.playerCategory  &&
             secondBody.categoryBitMask == physicsCategories.rightWallCategory{
             player.texture = SKTexture(imageNamed: "rightWallJump")
-            print("the ball hit the right wall, run sound action")
+            //print("the ball hit the right wall, run sound action")
             run(jumpSoundAction)
             player.removeAllActions()
             rightWallTouch = true
             leftWallTouch = false
-            print("right collide")
+            //print("right collide")
         }
         
         
@@ -150,6 +155,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody.categoryBitMask == physicsCategories.coinCategory &&
             secondBody.categoryBitMask == physicsCategories.playerCategory{
             print("player got a coin")
+            playerCoins += 1
         }
     
         if firstBody.categoryBitMask == physicsCategories.playerCategory &&
@@ -242,17 +248,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //UPDATE
     override func update(_ currentTime: TimeInterval) {
         //called before each frame is rendered
-
+        checkAchivements()
         //Making sure points are current
         scoreLabel.text = "\(points)"
-        
-
-        
-        
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////
     //MARK: GAME FUNCTIONS
+    //GAME INSTRUSTIONS
+    func showInstructions(){
+        swipeTo.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 50)
+        movePlayer.position = CGPoint(x: self.frame.midX, y: swipeTo.position.y - 50)
+        dodgeSpikes.position = CGPoint(x: self.frame.midX, y: movePlayer.position.y - 50)
+        swipeTo.fontSize = 50
+        swipeTo.color = UIColor.black
+        movePlayer.fontSize = 50
+        movePlayer.color = UIColor.black
+        dodgeSpikes.fontSize = 30
+        dodgeSpikes.color = UIColor.black
+        
+        self.addChild(swipeTo)
+        self.addChild(movePlayer)
+        self.addChild(dodgeSpikes)
+    }
+    func removeInstructions(){
+        self.removeChildren(in: [swipeTo,movePlayer, dodgeSpikes])
+    }
     
 
     //
@@ -329,9 +350,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rightWall.physicsBody?.categoryBitMask = physicsCategories.rightWallCategory
         self.addChild(rightWall)
         
-        print("left wall x position is " + "\(leftWall.position.x)" + " , right wall x position is " + "\(rightWall.position.x)" )
-        print("the right side of left wall? "  +  "\(leftWall.frame.maxX)")
-        print("the left side of right wall? "  +  "\(rightWall.frame.minX)")
+        //print("left wall x position is " + "\(leftWall.position.x)" + " , right wall x position is " + "\(rightWall.position.x)" )
+       // print("the right side of left wall? "  +  "\(leftWall.frame.maxX)")
+        //print("the left side of right wall? "  +  "\(rightWall.frame.minX)")
 
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         self.physicsWorld.contactDelegate = self
@@ -353,11 +374,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.restitution = 1.0
         player.physicsBody?.linearDamping = 0.0
         player.physicsBody?.categoryBitMask = physicsCategories.playerCategory
+        player.physicsBody?.collisionBitMask = 0
         player.physicsBody?.contactTestBitMask = physicsCategories.leftWallCategory
         player.physicsBody?.contactTestBitMask = physicsCategories.rightWallCategory
         player.physicsBody?.contactTestBitMask = physicsCategories.coinCategory
-        player.physicsBody?.collisionBitMask = physicsCategories.coinCategory
-
         self.addChild(player)
         run(startSoundAction)
     }
@@ -381,8 +401,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         coin.size = CGSize(width: 75, height: 75)
         coin.run(coinAnimatieAction)
         coin.name = physicsCategories.coinName
+        
+        coin.physicsBody = SKPhysicsBody(circleOfRadius: 75.0)
         coin.physicsBody?.categoryBitMask = physicsCategories.coinCategory;
-        coin.physicsBody?.collisionBitMask = physicsCategories.playerCategory
+        coin.physicsBody?.collisionBitMask = 0
         coin.physicsBody?.contactTestBitMask = physicsCategories.playerCategory;
         coin.physicsBody?.affectedByGravity = false
         coin.physicsBody?.isDynamic = false
@@ -414,6 +436,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             points += 1
             //print("right point")
         }
+        
 
         scoreLabel.text = "\(points)"
         //SETUP OF LEFT PIPE
@@ -472,6 +495,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.removeAllActions()
         self.removeAllChildren()
         points = 0
+        playerCoins = 0
         died = false
         gameStarted = false
         createGame()
@@ -515,8 +539,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func die(){
         //function called when the player touches a spike
         died = true
+        playerDeaths += 1
         player.removeAllActions()
         createRestartButton()
+        submitScore(score: points)
     }
     
     
@@ -542,26 +568,135 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
+    func submitScore(score: Int){
+        
+        let playerScore = score
+        
+        let bestScoreInt = GKScore(leaderboardIdentifier: LEADERBOARD_ID)
+        bestScoreInt.value = Int64(playerScore)
+        GKScore.report([bestScoreInt]){ (error) in
+            if error != nil{
+                //print("score error ====  \(error?.localizedDescription as Any)")
+
+            }else{
+               // print ("the player's score after death\(bestScoreInt)")
+            }
+            
+        
+        }
+    }
+    
+    func checkAchivements(){
+        if points >= 5{
+            let achivement = GKAchievement(identifier: "grp.5pointsScore")
+            if achivement.isCompleted == true{
+                achivement.showsCompletionBanner = false
+            }else{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+                //print(achivement.isCompleted)
+            }
+        }
+        
+        if points >= 10{
+            let achivement = GKAchievement(identifier: "grp.10pointsScore")
+            if achivement.isCompleted == true{
+                achivement.showsCompletionBanner = false
+            }else{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+            }
+        }
+        
+        if points >= 25{
+            let achivement = GKAchievement(identifier: "grp.25pointScore")
+            if achivement.isCompleted == true{
+                achivement.showsCompletionBanner = false
+                
+            }else{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+            }
+        }
+        
+        if points >= 50{
+            let achivement = GKAchievement(identifier: "grp.50scorePoints")
+            if achivement.isCompleted == true{
+                achivement.showsCompletionBanner = false
+                
+            }else{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+            }
+        }
+        
+        if playerDeaths >= 5{
+            let achivement = GKAchievement(identifier: "grp.5die")
+            if achivement.isCompleted == true{
+                achivement.showsCompletionBanner = false
+                
+            }else if achivement.isCompleted == false{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+            }
+        }
+        
+        if playerDeaths >= 10{
+            let achivement = GKAchievement(identifier: "grp.10die")
+            if achivement.isCompleted == true{
+                achivement.showsCompletionBanner = false
+                
+            }else if achivement.isCompleted == false{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+            }
+        }
+        
+        if playerSwipes >= 100{
+            let achivement = GKAchievement(identifier: "grp.100swpie")
+            if achivement.isCompleted == false{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+            }
+        }
+        
+        if playerSwipes >= 500{
+            let achivement = GKAchievement(identifier: "grp.500swipes")
+            if achivement.isCompleted == false{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+            }
+        }
+        
+        if playerCoins >= 5{
+            let achivement = GKAchievement(identifier: "grp.5coinCollect")
+            if achivement.isCompleted == false{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+            }
+        }
+        
+        if playerCoins >= 50{
+            let achivement = GKAchievement(identifier: "grp.50coinCollect")
+            if achivement.isCompleted == false{
+                achivement.percentComplete = 100.0
+                achivement.showsCompletionBanner = true
+                GKAchievement.report([achivement], withCompletionHandler: nil)
+            }
+        }
+    }
 
     
     
-    //GAME INSTRUSTIONS
-    func showInstructions(){
-        swipeTo.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 50)
-        movePlayer.position = CGPoint(x: self.frame.midX, y: swipeTo.position.y - 50)
-        dodgeSpikes.position = CGPoint(x: self.frame.midX, y: movePlayer.position.y - 50)
-        swipeTo.fontSize = 50
-        swipeTo.color = UIColor.black
-        movePlayer.fontSize = 50
-        movePlayer.color = UIColor.black
-        dodgeSpikes.fontSize = 30
-        dodgeSpikes.color = UIColor.black
-        
-        self.addChild(swipeTo)
-        self.addChild(movePlayer)
-        self.addChild(dodgeSpikes)
-    }
-    func removeInstructions(){
-        self.removeChildren(in: [swipeTo,movePlayer, dodgeSpikes])
-    }
+
 }

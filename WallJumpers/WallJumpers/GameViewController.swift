@@ -88,15 +88,18 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         return false
     }
     
+    //to display leaderboard
     func showLeaderBoard(){
         let gameCenterViewController: GKGameCenterViewController = GKGameCenterViewController()
-      //  gameCenterViewController.delegate = self
+        gameCenterViewController.gameCenterDelegate = self
         gameCenterViewController.viewState = GKGameCenterViewControllerState.leaderboards
+        
         gameCenterViewController.leaderboardIdentifier = "grp.score.walljumper"
-        self.present(gameCenterViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(gameCenterViewController, animated: true)
+        self.present(gameCenterViewController, animated: true, completion: nil)
     }
     
+    //when done is tapped
     func gameCenterViewControllerDidFinish(_ gcViewController: GKGameCenterViewController){
         self.dismiss(animated: true, completion: nil)
     }
